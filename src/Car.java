@@ -1,10 +1,12 @@
+import java.util.Objects;
+
 public class Car {
 
     String model;
-    int year;
+    String year;
     String color;
 
-    public Car(String model, int year, String color) {
+    public Car(String model, String year, String color) {
         this.model = model;
         this.year = year;
         this.color = color;
@@ -19,11 +21,24 @@ public class Car {
         return model;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
     public String getColor() {
         return color;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return Objects.equals(model, car.model) && Objects.equals(year, car.year) && Objects.equals(color, car.color);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(model, year, color);
     }
 }
